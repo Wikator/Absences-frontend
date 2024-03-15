@@ -1,0 +1,94 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          Register
+        </div>
+        <div class="card-body">
+          <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()">
+            <div class="form-group mb-2">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                [class.is-invalid]="registerForm.controls['username'].touched && registerForm.controls['username'].invalid"
+                id="username"
+                formControlName="username" />
+              @if(registerForm.controls['username'].errors?.['required']) {
+                <div class="invalid-feedback">Username is required</div>
+              }
+            </div>
+            <div class="form-group mb-2">
+              <label for="faculty1">Faculty 1</label>
+              <select
+                class="form-select"
+                [class.is-invalid]="registerForm.controls['faculty1'].touched && registerForm.controls['faculty1'].invalid"
+                id="faculty1"
+                formControlName="faculty1">
+                <option [value]="''">None</option>
+                @for (subject of faculty1Subjects; track subject.id) {
+                  <option [value]="subject.id">{{ subject.name }}</option>
+                }
+              </select>
+            </div>
+            <div class="form-group mb-2">
+              <label for="faculty2">Faculty 2</label>
+              <select
+                class="form-select"
+                [class.is-invalid]="registerForm.controls['faculty2'].touched && registerForm.controls['faculty2'].invalid"
+                id="faculty2"
+                formControlName="faculty2">
+                <option [value]="''">None</option>
+                @for (subject of faculty2Subjects; track subject.id) {
+                  <option [value]="subject.id">{{ subject.name }}</option>
+                }
+              </select>
+            </div>
+            <div class="form-group mb-2">
+              <label for="faculty3">Faculty 3</label>
+              <select
+                class="form-select"
+                [class.is-invalid]="registerForm.controls['faculty3'].touched && registerForm.controls['faculty3'].invalid"
+                id="faculty3"
+                formControlName="faculty3">
+                <option [value]="''">None</option>
+                @for (subject of faculty3Subjects; track subject.id) {
+                  <option [value]="subject.id">{{ subject.name }}</option>
+                }
+              </select>
+            </div>
+            <div class="form-group mb-2">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                [class.is-invalid]="registerForm.controls['password'].touched && registerForm.controls['password'].invalid"
+                id="password"
+                formControlName="password" />
+              @if(registerForm.controls['password'].errors) {
+                <div class="invalid-feedback">Password must be at least 6 characters</div>
+              }
+            </div>
+            <div class="form-group mb-2">
+              <label for="password-confirmation">Confirm password</label>
+              <input
+                type="password"
+                class="form-control"
+                [class.is-invalid]="registerForm.controls['passwordConfirmation'].touched && registerForm.controls['passwordConfirmation'].invalid"
+                id="password-confirmation"
+                formControlName="passwordConfirmation" />
+              @if(registerForm.controls['passwordConfirmation'].errors) {
+                <div class="invalid-feedback">Passwords must match</div>
+              }
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [class.disabled]="registerForm.invalid">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

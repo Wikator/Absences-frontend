@@ -1,0 +1,3 @@
+@if ((currentSubject$ | async); as subject) {
+  <app-subject-form (onSubmit)="editSubject(subject.id, $event)" [initialSubject]="subject" [deleteButtonVisible]="true" />
+}

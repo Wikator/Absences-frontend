@@ -1,0 +1,75 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          Subject
+        </div>
+        <div class="card-body">
+          <form [formGroup]="subjectForm" (ngSubmit)="subjectForm.valid && submit()">
+            <div class="form-group mb-2">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                [class.is-invalid]="subjectForm.controls['name'].touched && subjectForm.controls['name'].invalid"
+                id="name"
+                formControlName="name" />
+              @if(subjectForm.controls['name'].errors?.['required']) {
+                <div class="invalid-feedback">Name is required</div>
+              }
+            </div>
+            <div class="form-group mb-2">
+              <label for="maxAbsences">Max absences</label>
+              <input
+                type="number"
+                class="form-control"
+                [class.is-invalid]="subjectForm.controls['maxAbsences'].touched && subjectForm.controls['maxAbsences'].invalid"
+                id="maxAbsences"
+                formControlName="maxAbsences" />
+              @if(subjectForm.controls['maxAbsences'].errors?.['required']) {
+                <div class="invalid-feedback">Max absences is required</div>
+              }
+              @if(subjectForm.controls['maxAbsences'].errors?.['min']) {
+                <div class="invalid-feedback">Max absences must be at least 1</div>
+              }
+              @if(subjectForm.controls['maxAbsences'].errors?.['max']) {
+                <div class="invalid-feedback">Max absences must be at most 15</div>
+              }
+            </div>
+            <div class="form-group mb-2">
+              <label for="facultyType">Faculty type</label>
+              <input
+                type="number"
+                class="form-control"
+                [class.is-invalid]="subjectForm.controls['facultyType'].touched && subjectForm.controls['facultyType'].invalid"
+                id="facultyType"
+                formControlName="facultyType" />
+              @if(subjectForm.controls['facultyType'].errors?.['required']) {
+                <div class="invalid-feedback">Max absences is required</div>
+              }
+              @if(subjectForm.controls['facultyType'].errors?.['min']) {
+                <div class="invalid-feedback">Faculty type must be at least 1</div>
+              }
+              @if(subjectForm.controls['facultyType'].errors?.['max']) {
+                <div class="invalid-feedback">Faculty type must be at most 15</div>
+              }
+            </div>
+            <div class="btn-group  mb-3">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [class.disabled]="subjectForm.invalid">Submit</button>
+              @if (deleteButtonVisible) {
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="delete()">Delete</button>
+              }
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="row">
+  @if (accountService.currentUser$ | async; as user) {
+    @for (absence of user.absences; track absence.subject.id) {
+      <div class="col-md-3 mt-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="card-title text-center">{{ absence.subject.name }}</h2>
+            <p class="text-center"><strong>{{ absence.absencesCount }} / {{ absence.subject.maxAbsences }}</strong></p>
+            <div class="mt-auto d-flex align-items-center">
+              <button class="btn btn-outline-success btn-sm" (click)="decrementAbsencesCount(absence.subject.id, user)"><i class="fa fa-arrow-left"></i></button>
+              <div class="progress mx-2 flex-grow-1">
+                <div class="progress-bar" role="progressbar" [style.width]="getProgressBarWidth(absence.subject.id, user) + '%'" [style.background]="getProgressBarColor(absence.subject.id, user)"></div>
+              </div>
+              <button class="btn btn-outline-danger btn-sm" (click)="incrementAbsencesCount(absence.subject.id, user)"><i class="fa fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  }
+</div>
+
+

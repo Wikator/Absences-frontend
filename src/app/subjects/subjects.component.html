@@ -1,0 +1,20 @@
+<table class="table table-striped table-bordered table-hover table-sm mt-4">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Name</th>
+    <th scope="col">Max Absences</th>
+    <th scope="col">Faculty Type</th>
+  </tr>
+  </thead>
+  <tbody>
+  @for (subject of subjects; track subject.id) {
+    <tr (click)="navigateToSubject(subject.id)">
+      <td>{{subject.id}}</td>
+      <td>{{subject.name}}</td>
+      <td>{{subject.maxAbsences}}</td>
+      <td>{{subject.facultyType}}</td>
+    </tr>
+  }
+  </tbody>
+</table>
